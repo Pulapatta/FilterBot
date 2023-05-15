@@ -17,8 +17,8 @@ async def startCMD(client: FilterBot, message: Message):
       InlineKeyboardButton('Help', callback_data='main#help'),
       InlineKeyboardButton('About', callback_data='main#about')
       ],[
-      InlineKeyboardButton('Update', url='t.me/Mo_Tech_YT'),
-      InlineKeyboardButton('Support', url='t.me/motechgroup')
+      InlineKeyboardButton('♻️ ʜᴇʟᴘ ♻️', callback_data='main#help'),
+      InlineKeyboardButton('♻️ ᴀʙᴏᴜᴛ ♻️', callback_data='main#about')
       ]]
 
     if "motech" == BOT_PICS[0]:
