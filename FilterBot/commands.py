@@ -12,7 +12,7 @@ async def startCMD(client: FilterBot, message: Message):
 
     bot = await client.get_me()
     keyboard = [[
-      InlineKeyboardButton('Add Me To Your Chat', url=f"https://t.me/{bot.username}?startgroup=true")
+      InlineKeyboardButton('❦ ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ ❦', url=f"https://t.me/{bot.username}?startgroup=true")
       ],[
       InlineKeyboardButton('Help', callback_data='main#help'),
       InlineKeyboardButton('About', callback_data='main#about')
