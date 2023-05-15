@@ -14,8 +14,9 @@ async def startCMD(client: FilterBot, message: Message):
     keyboard = [[
       InlineKeyboardButton('❦ ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ ❦', url=f"https://t.me/{bot.username}?startgroup=true")
       ],[
-      InlineKeyboardButton('Help', callback_data='main#help'),
-      InlineKeyboardButton('About', callback_data='main#about')
+      InlineKeyboardButton('💢 ᴜᴘᴅᴀᴛᴇ 💢', url='https://t.me/Malayalam_Cinema_Universe'),
+
+      InlineKeyboardButton('💢 мσνιєѕ 💢', url='https://t.me/Malayalam_Cinema_Universe')
       ],[
       InlineKeyboardButton('♻️ ʜᴇʟᴘ ♻️', callback_data='main#help'),
       InlineKeyboardButton('♻️ ᴀʙᴏᴜᴛ ♻️', callback_data='main#about')
@@ -34,8 +35,8 @@ async def helpCMD(client: FilterBot, message: Message):
     if not await db.is_user_exist(message.from_user.id):
         await db.add_user(message.from_user.first_name, message.from_user.id)
 
-    keyboard = [[ InlineKeyboardButton('Home', callback_data='main#start'),
-                  InlineKeyboardButton('Close', callback_data='main#close') ]]
+    keyboard = [[ InlineKeyboardButton('🏡 ʜᴏᴍᴇ', callback_data='main#start'),
+                  InlineKeyboardButton('🚫 ᴄʟᴏꜱᴇ', callback_data='main#close') ]]
 
     if "motech" == BOT_PICS[0]:
         await message.reply_text(text=HelpTxT.format(mention=message.from_user.mention), reply_markup=InlineKeyboardMarkup(keyboard))
@@ -48,10 +49,10 @@ async def aboutCMD(client: FilterBot, message: Message):
     if not await db.is_user_exist(message.from_user.id):
         await db.add_user(message.from_user.first_name, message.from_user.id)
 
-    keyboard = [[ InlineKeyboardButton('Tutorial', url='https://youtu.be/hDGgPNgjo9o'),
-                   InlineKeyboardButton('Repo', url='https://github.com/PR0FESS0R-99/FilterBot') ],
-                [ InlineKeyboardButton('Home', callback_data='main#start'),
-                  InlineKeyboardButton('Help', callback_data='main#help') ]]
+    keyboard = [[ InlineKeyboardButton('🏡 ʜᴏᴍᴇ', callback_data='main#start'),
+
+                  InlineKeyboardButton('🚫 ᴄʟᴏꜱᴇ', callback_data='main#close') ]]
+
 
     if "motech" == BOT_PICS[0]:
         await message.reply_text(text=AboutTxT.format(mention=message.from_user.mention), reply_markup=InlineKeyboardMarkup(keyboard))
