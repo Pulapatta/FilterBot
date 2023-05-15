@@ -72,21 +72,61 @@ async def maincallback(client: FilterBot, message):
 
     if type == "start":
         bot = await client.get_me()
-        keyboard = [[ InlineKeyboardButton('Add Me To Your Chat', url=f"t.me/{bot.username}?startgroup=true") ],
-                    [ InlineKeyboardButton('Help', callback_data='main#help'),
-                      InlineKeyboardButton('About', callback_data='main#about') ],
-                    [ InlineKeyboardButton('Update', url='t.me/mo_tech_yt'),
-                      InlineKeyboardButton('Support', url='t.me/motechgroup') ]]
-        await message.message.edit(text=StartTxT.format(mention=message.from_user.mention), reply_markup=InlineKeyboardMarkup(keyboard), disable_web_page_preview=True)
+        keyboard = [[
 
-    elif type == "help":
-        keyboard = [[ InlineKeyboardButton('Home', callback_data='main#start'),
-                      InlineKeyboardButton('Close', callback_data='main#close') ]]
-        await message.message.edit(text=HelpTxT, reply_markup=InlineKeyboardMarkup(keyboard), disable_web_page_preview=True)
+      InlineKeyboardButton('❦ ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ ❦', url=f"https://t.me/{bot.username}?startgroup=true")
 
-    elif type == "about":
-        keyboard = [[ InlineKeyboardButton('Tutorial', url='https://youtu.be/hDGgPNgjo9o'),
-                       InlineKeyboardButton('Repo', url='https://github.com/PR0FESS0R-99/FilterBot') ],
-                    [ InlineKeyboardButton('Home', callback_data='main#start'),
-                      InlineKeyboardButton('Help', callback_data='main#help') ]]
+      ],[
+
+      InlineKeyboardButton('💢 ᴜᴘᴅᴀᴛᴇ 💢', url='https://t.me/Malayalam_Cinema_Universe'),
+
+      InlineKeyboardButton('💢 мσνιєѕ 💢', url='https://t.me/Malayalam_Cinema_Universe')
+
+      ],[
+
+      InlineKeyboardButton('♻️ ʜᴇʟᴘ ♻️', callback_data='main#help'),
+
+      InlineKeyboardButton('♻️ ᴀʙᴏᴜᴛ ♻️', callback_data='main#about')
+
+      ]]
+
+    if "motech" == BOT_PICS[0]:
+
+        await message.reply_text(text=StartTxT.format(mention=message.from_user.mention), reply_markup=InlineKeyboardMarkup(keyboard))
+
+    else:
+
+        await message.reply_photo(photo=random.choice(BOT_PICS), caption=StartTxT.format(mention=message.from_user.mention), reply_markup=InlineKeyboardMarkup(keyboard))
+
+@FilterBot.on_message(filters.private & filters.command("help"))
+
+async def helpCMD(client: FilterBot, message: Message):
+
+    if not await db.is_user_exist(message.from_user.id):
+
+        await db.add_user(message.from_user.first_name, message.from_user.id)
+
+    keyboard = [[ InlineKeyboardButton('🏡 ʜᴏᴍᴇ', callback_data='main#start'),
+
+                  InlineKeyboardButton('🚫 ᴄʟᴏꜱᴇ', callback_data='main#close') ]]
+
+    if "motech" == BOT_PICS[0]:
+
+        await message.reply_text(text=HelpTxT.format(mention=message.from_user.mention), reply_markup=InlineKeyboardMarkup(keyboard))
+
+    else:
+
+        await message.reply_photo(photo=random.choice(BOT_PICS), caption=HelpTxT.format(mention=message.from_user.mention), reply_markup=InlineKeyboardMarkup(keyboard))
+
+@FilterBot.on_message(filters.private & filters.command("about"))
+
+async def aboutCMD(client: FilterBot, message: Message):
+
+    if not await db.is_user_exist(message.from_user.id):
+
+        await db.add_user(message.from_user.first_name, message.from_user.id)
+
+    keyboard = [[ InlineKeyboardButton('🏡 ʜᴏᴍᴇ', callback_data='main#start'),
+
+                  InlineKeyboardButton('🚫 ᴄʟᴏꜱᴇ', callback_data='main#close') ]]
         await message.message.edit(text=AboutTxT, reply_markup=InlineKeyboardMarkup(keyboard), disable_web_page_preview=True)
